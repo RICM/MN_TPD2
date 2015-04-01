@@ -91,10 +91,19 @@ void scalD (MatriceD a, double s, MatriceD res){
 	#endif
 }
 
+/** Gaxpy of a matrix by an array**/
 void gaxpyD (MatriceD a, VectD x, VectD y){
-	for(int i=0; i<N; i++)
-		for(int j=0; j<N; j++)
-			y[i] += a[i][j]*x[j];
+	#ifdef _OPENMP
+		int i,j;
+	#pragma omp parallel for private(i,j)
+		for(i=0; i<N; i++)
+			for(j=0; j<N; j++)
+				y[i] += a[i][j]*x[j];
+	#else
+		for(int i=0; i<N; i++)
+			for(int j=0; j<N; j++)
+				y[i] += a[i][j]*x[j];
+	#endif
 }
 
 /********************************************************/
