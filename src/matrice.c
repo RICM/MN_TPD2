@@ -232,3 +232,13 @@ void getMatF (MatriceF a){
 		for(int j = 0; j<N; j++)
 			scanf("%f", &a[i][j]);
 }
+
+void getVectD (VectD a){
+	for(int i=0; i<N; i++)
+		scanf("%lf", &a[i]);
+}
+
+void getVectF (VectF a){
+	for(int i=0; i<N; i++)
+		scanf("%f", &a[i]);
+}

@@ -1,6 +1,3 @@
-#define BORNEINF 	0
-#define BORNESUP 	10
-
 typedef double MatriceD[N][N];
 typedef float MatriceF[N][N];
 
@@ -31,3 +28,6 @@ void getMatD (MatriceD a);
 void printMatF (MatriceF a);
 void initMatF (MatriceF a);
 void getMatF (MatriceF a);
+
+void getVectD (VectD a);
+void getVectF (VectF a);
