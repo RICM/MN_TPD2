@@ -91,6 +91,12 @@ void scalD (MatriceD a, double s, MatriceD res){
 	#endif
 }
 
+void gaxpyD (MatriceD a, VectD x, VectD y){
+	for(int i=0; i<N; i++)
+		for(int j=0; j<N; j++)
+			y[i] += a[i][j]*x[j];
+}
+
 /********************************************************/
 /*						   Float						*/
 /********************************************************/
@@ -168,6 +174,12 @@ void scalF (MatriceF a, float s, MatriceF res){
 			for(int j = 0; j<N; j++)
 				res[i][j] = a[i][j]*s;
 	#endif	
+}
+
+void gaxpyF (MatriceF a, VectF x, VectF y){
+	for(int i=0; i<N; i++)
+		for(int j=0; j<N; j++)
+			y[i] += a[i][j]*x[j];
 }
 
 
