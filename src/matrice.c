@@ -113,7 +113,7 @@ void transF (MatriceF a, MatriceF res){
 	#else
 		for(int i = 0; i<N; i++)
 			for(int j = 0; j<N; j++)
-				res[i][j] = a[j][i];	
+				res[i][j] = a[j][i];
 	#endif
 }
 
@@ -129,7 +129,7 @@ void addF (MatriceF a, MatriceF b, MatriceF res){
 	#else
 		for(int i = 0; i<N; i++)
 			for(int j = 0; j<N; j++)
-				res[i][j] = a[i][j] + b[i][j];	
+				res[i][j] = a[i][j] + b[i][j];
 	#endif
 }
 
@@ -173,13 +173,22 @@ void scalF (MatriceF a, float s, MatriceF res){
 		for(int i = 0; i<N; i++)
 			for(int j = 0; j<N; j++)
 				res[i][j] = a[i][j]*s;
-	#endif	
+	#endif
 }
 
+/** Gaxpy of a matrix by an array**/
 void gaxpyF (MatriceF a, VectF x, VectF y){
-	for(int i=0; i<N; i++)
-		for(int j=0; j<N; j++)
-			y[i] += a[i][j]*x[j];
+	#ifdef _OPENMP
+		int i,j;
+	#pragma omp parallel for private(i,j)
+		for(i=0; i<N; i++)
+			for(j=0; j<N; j++)
+				y[i] += a[i][j]*x[j];
+	#else
+		for(int i=0; i<N; i++)
+			for(int j=0; j<N; j++)
+				y[i] += a[i][j]*x[j];
+	#endif
 }
 
 
