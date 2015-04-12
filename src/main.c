@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
- 
+
 #include "matrice.h"
 
 MatriceD aD, bD, cD;
@@ -8,7 +8,7 @@ MatriceF aF, bF, cF;
 
 VectD xD, yD;
 VectF xF, yF;
- 
+
 void usage (void) {
   fprintf(stderr, "Usage : ./test_matrix_XXX [a/m/s/t/g] [int] [d/f]\n");
   exit(EXIT_FAILURE);
@@ -33,25 +33,25 @@ void avancement(int x, int n, int r, int w){
     printf("]\n\033[F\033[J");
 }
 /********************************************************************************************************************/
- 
- 
+
+
 int main (int argc, char **argv){
 
     char operation;
     int iteration;
     char type;
 
-    if (argc != 4 || sscanf (argv[1],"%c",&operation) != 1 
-    		|| sscanf (argv[2],"%d",&iteration) != 1 
+    if (argc != 4 || sscanf (argv[1],"%c",&operation) != 1
+    		|| sscanf (argv[2],"%d",&iteration) != 1
     		|| sscanf (argv[3],"%c",&type) != 1)
     	usage();
-	if (operation != 'a' && operation != 'm' && operation != 's' 
+	if (operation != 'a' && operation != 'm' && operation != 's'
 			&& operation != 'l' && operation !='t' && operation != 'g')
     	usage();
     if (type != 'd' && type != 'f')
         usage();
 
-    
+
 
     double d = (double)rand()/(double)(RAND_MAX/100.0);
 	float f = (float)rand()/(float)(RAND_MAX/100.0);
@@ -163,5 +163,3 @@ int main (int argc, char **argv){
     //OPENMP
     return EXIT_SUCCESS;
 }
-
-
