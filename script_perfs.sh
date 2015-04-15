@@ -1,4 +1,4 @@
-#definie les variables
+#definie les variables locales requises
 ADD_LOOP=100000;
 MULT_LOOP=500;
 SIZE_OF_SMALL=315;
