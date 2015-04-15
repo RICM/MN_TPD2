@@ -75,9 +75,14 @@ fi
 	echo "#########        END OF TEST      #########" >> perfs.txt;
 	echo "" >> perfs.txt;
 	echo "" >> perfs.txt;
+#Separating tests
+echo "######################################################################################################";
+echo "Tests with O3 and openmp";
+echo "######################################################################################################";
 #switching make file
 mv Makefile MakefileOpenmpO0
 mv MakefileOpenmpO3 Makefile
+echo "switched makefiles";
 #clean
 make clean > /dev/null 2>&1;
 if [ $? == O ] 
@@ -147,9 +152,14 @@ fi
 		echo "done";
 	echo "#########        END OF TEST      #########" >> perfs.txt;
 	echo "" >> perfs.txt;
+#Separating tests
+echo "######################################################################################################";
+echo "Tests with O3 and NO openmp";
+echo "######################################################################################################";
 #switching make file
 mv Makefile MakefileOpenmpO3
 mv MakefileNOpenmpO3 Makefile
+echo "switched makefiles";
 #clean
 make clean > /dev/null 2>&1;
 if [ $? == O ] 
