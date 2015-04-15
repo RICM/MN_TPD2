@@ -50,3 +50,4 @@ Voici les résultats obtenus pour les matrices avec la machine présentée ci-de
 
 * SSE sur vecteurs (x scalaire flottant, addition flottant)
 * Vectorisation sur matrices (+ / x)
+* Factorisation LU
