@@ -24,8 +24,8 @@ void transD (MatriceD a, MatriceD res){
 			for(j = 0; j<N; j++)
 				res[i][j] = a[j][i];
 	#else
-		for(i = 0; i<N; i++)
-			for(j = 0; j<N; j++)
+		for(int i = 0; i<N; i++)
+			for(int j = 0; j<N; j++)
 				res[i][j] = a[j][i];
 	#endif
 }
@@ -86,8 +86,9 @@ void scalD (MatriceD a, double s, MatriceD res){
 			for(j = 0; j<N; j++)
 				res[i][j] = a[i][j]*s;
 	#else
-		for(int j = 0; j<N; j++)
-			res[i][j] = a[i][j]*s;
+		for(int i = 0; i<N; i++)
+			for(int j = 0; j<N; j++)
+				res[i][j] = a[i][j]*s;
 	#endif
 }
 
