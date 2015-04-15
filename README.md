@@ -15,18 +15,18 @@ Afin d'éffectuer un test des performances de l'application un script .sh est à
     MULT_LOOP=Y (valeur souhaitée d'iterations / par défaut 500);
 
 Ce script compile tout seul l'application et la lance afin de faire les tests sur :
-  1. addition / openmp / matrices en cache / -O0
-  2. addition / openmp / matrices pas en cache / -O0
-  3. addition / openmp / matrices en cache / -O3
-  4. addition / openmp / matrices pas en cache / -O3
-  5. addition / pas openmp / matrices pas en cache / -O3
-  6. addition / pas openmp / matrices en cache / -O3
-  7. multiplication / openmp / matrices en cache / -O0
-  8. multiplication / openmp / matrices pas en cache / -O0
-  9. multiplication / openmp / matrices en cache / -O3
-  10. multiplication / openmp / matrices pas en cache / -O3
-  11. multiplication / pas openmp / matrices pas en cache / -O3
-  12. multiplication / pas openmp / matrices en cache / -O3
+* addition / openmp / matrices en cache / -O0
+* addition / openmp / matrices pas en cache / -O0
+* addition / openmp / matrices en cache / -O3
+* addition / openmp / matrices pas en cache / -O3
+* addition / pas openmp / matrices pas en cache / -O3
+* addition / pas openmp / matrices en cache / -O3
+* multiplication / openmp / matrices en cache / -O0
+* multiplication / openmp / matrices pas en cache / -O0
+* multiplication / openmp / matrices en cache / -O3
+* multiplication / openmp / matrices pas en cache / -O3
+* multiplication / pas openmp / matrices pas en cache / -O3
+* multiplication / pas openmp / matrices en cache / -O3
 
 Ce script génère en outre un fichier perfs.txt ressemblant à ceci :
 
