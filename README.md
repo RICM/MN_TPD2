@@ -38,8 +38,7 @@ Ceci permet en outre d'avoir une vue d'ensemble sur les différentes options et 
 ## Présentation de la machine de tests
 Voici la machine utilisée lors des tests :
 
-
-![machine de tests](docs/machine.png)
+** A completer avec la machine de maTThieu **
 
 ## Présentation des résultats sur matrices
 Voici les résultats obtenus pour les matrices avec la machine présentée ci-dessus.
