@@ -15,7 +15,7 @@ Afin d'éffectuer un test des performances de l'application un script .sh est à
     MULT_LOOP=Y (valeur souhaitée d'iterations / par défaut 500);
 
 Ce script compile tout seul l'application et la lance afin de faire les tests sur :
-* addition / openmp / matrices en cache / -O0
+1. addition / openmp / matrices en cache / -O0
 * addition / openmp / matrices pas en cache / -O0
 * addition / openmp / matrices en cache / -O3
 * addition / openmp / matrices pas en cache / -O3
