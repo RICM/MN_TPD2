@@ -45,3 +45,8 @@ Voici la machine utilisée lors des tests :
 Voici les résultats obtenus pour les matrices avec la machine présentée ci-dessus.
 
 ![résultats](docs/res_mat.png)
+
+## TODO --
+
+* SSE sur vecteurs (x scalaire flottant, addition flottant)
+* Vectorisation sur matrices (+ / x)
