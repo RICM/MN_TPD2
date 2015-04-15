@@ -5,6 +5,10 @@ MULT_LOOP=30;
 rm -rf perfs.txt;
 #crée le fichier de sortie
 touch perfs.txt;
+#Separating tests
+echo "######################################################################################################";
+echo "Tests with O0 and openmp";
+echo "######################################################################################################";
 #clean
 make clean > /dev/null 2>&1;
 if [ $? == O ] 
