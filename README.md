@@ -11,6 +11,11 @@
 
 Afin d'éffectuer un test des performances de l'application un script .sh est à disposition. Pour l'éxécuter ./script_perfs.sh. Afin de personaliser les tests il est possible de changer les valeurs des itérations dans le script .sh.
 
+** ATTENTION **
+
+Si jamais le script `.sh`est interrompu avant la fin de son execution, il vous faudra par précaution lancer le script `restore.sh` afin de restaurer les Makefiles. 
+
+
     ADD_LOOP=X (valeur souhaitée d'itérations / par défaut 100 000);
     MULT_LOOP=Y (valeur souhaitée d'iterations / par défaut 500);
 
