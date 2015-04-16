@@ -1,4 +1,4 @@
-#definie les variables localess
+#definition des variables locales au scripts
 ADD_LOOP=100000;
 MULT_LOOP=500;
 SIZE_OF_SMALL=315;
@@ -241,6 +241,12 @@ fi
 #restore makefile
 mv Makefile MakefileNOpenmpO3
 mv MakefileOpenmpO0 Makefile
-#unset
+#libère les variables locales
 unset ADD_LOOP;
 unset MULT_LOOP;
+unset SIZE_OF_SMALL;
+unset SIZE_OF_BIG;
+unset NUMBER_OF_OPS_ADD_SMALL;
+unset NUMBER_OF_OPS_ADD_BIG;
+unset NUMBER_OF_OPS_MULT_SMALL;
+unset NUMBER_OF_OPS_MULT_BIG;
