@@ -102,3 +102,4 @@ $(DIR_OBJ)test_vect.o : $(DIR_SRC)test_vect.c $(DIR_INCLUDE)vecteur.h
 
 clean:
 	rm -f $(DIR_OBJ)* $(DIR_EXE)* $(DIR_LIB)libvect.a
+
