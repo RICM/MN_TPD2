@@ -58,6 +58,16 @@ libvect.a: $(DIR_OBJ)vecteur.o
 #                   DEPENDENCIES
 #-------------------------------------------------
 
+$(DIR_OBJ)test_vect.o: $(DIR_SRC)test_vect.c $(DIR_INCLUDE)vecteur.h
+	@echo ------------- Generating $@ -------------
+	$(CC) -o $@ -fopenmp -DDEBUG=$(DEBUG) -c $< $(CFLAGS)
+	@echo -e
+
+$(DIR_OBJ)vecteur.o: $(DIR_SRC)vecteur.c $(DIR_INCLUDE)vecteur.h
+	@echo ------------- Generating $@ -------------
+	$(CC) -o $@ -fopenmp -DDEBUG=$(DEBUG) -c $< $(CFLAGS)
+	@echo -e
+
 #--------------
 #		SMALL
 #--------------
@@ -70,7 +80,6 @@ $(DIR_OBJ)matrice_small.o: $(DIR_SRC)matrice.c $(DIR_INCLUDE)matrice.h
 	@echo ------------- Generating $@ -------------
 	$(CC) -o $@ -DN=$(MAT_SMALL) -fopenmp -c $< $(CFLAGS)
 	@echo -e
-
 
 #--------------
 #		BIG
