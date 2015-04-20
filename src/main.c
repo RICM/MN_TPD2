@@ -10,7 +10,7 @@ VectD xD, yD;
 VectF xF, yF;
 
 void usage (void) {
-  fprintf(stderr, "Usage : ./test_matrix_XXX [a/m/s/t/g] [int] [d/f]\n");
+  fprintf(stderr, "Usage : ./test_matrix_XXX [a/m/s/t/g/f] [int] [d/f]\n");
   exit(EXIT_FAILURE);
 }
 
@@ -46,7 +46,7 @@ int main (int argc, char **argv){
     		|| sscanf (argv[3],"%c",&type) != 1)
     	usage();
 	if (operation != 'a' && operation != 'm' && operation != 's'
-			&& operation != 'l' && operation !='t' && operation != 'g')
+			&& operation != 'l' && operation !='t' && operation != 'g' && operation != 'f')
     	usage();
     if (type != 'd' && type != 'f')
         usage();
@@ -146,16 +146,42 @@ int main (int argc, char **argv){
                 }
             }
             break;
+        case 'f':
+            if (type == 'd'){
+                for (int i = 0; i<iteration; i++){
+                    factLUD(aD, bD, cD);
+                    avancement(i, iteration, 100, 50);
+                }
+            }
+            else{
+                for (int i = 0; i<iteration; i++){
+                    factLUF(aF, bF, cF);
+                    avancement(i, iteration, 100, 50);
+                }
+            }
+            break;
         default:
                 break;
     }
 
     if(DEBUG){
     	printf("Matrice resultat de taille %d =\n", N);
-	    if(type == 'd')
-	    	printMatD(cD);
-	   	else
-	   		printMatF(cF);
+        if(operation != 'f'){
+            if(type == 'd')
+                printMatD(cD);
+            else
+                printMatF(cF);
+        }
+        else{
+            if(type == 'd'){
+                printMatD(bD);
+                printMatD(cD);
+            }
+            else{
+                printMatF(bF);
+                printMatF(cF);
+            }
+        }
 	   	printf("Nombre d'iterations = %d.\n", iteration);
    	}
 

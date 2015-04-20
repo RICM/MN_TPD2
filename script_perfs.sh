@@ -41,11 +41,11 @@ fi
 		{ time ./target/debug/test_matrix_small a $ADD_LOOP f < test_mat.txt ; } 2>> perfs.txt;
 		echo "done";
 	#addition matrice small addition $ADD_LOOP iterations with doubles and openmp
-		echo "" >> perfs.txt;
-		echo "addition matrice small addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_SMALL" operations" >> perfs.txt;
-		echo "addition matrice small addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_SMALL" operations";
-		{ time ./target/debug/test_matrix_small a $ADD_LOOP d < test_mat.txt ; } 2>> perfs.txt;
-		echo "done";
+	#	echo "" >> perfs.txt;
+	#	echo "addition matrice small addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_SMALL" operations" >> perfs.txt;
+	#	echo "addition matrice small addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_SMALL" operations";
+	#	{ time ./target/debug/test_matrix_small a $ADD_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
 	#addition matrice big addition $ADD_LOOP iterations with floats and openmp
 		echo "" >> perfs.txt;
 		echo "addition matrice big addition "$ADD_LOOP" iterations with floats and openmp : "$NUMBER_OF_OPS_ADD_BIG" operations" >> perfs.txt;
@@ -53,11 +53,11 @@ fi
 		{ time ./target/debug/test_matrix_big a $ADD_LOOP f < test_mat.txt ; } 2>> perfs.txt;
 		echo "done";
 	#addition matrice big addition $ADD_LOOP iterations with doubles and openmp
-		echo "" >> perfs.txt;
-		echo "addition matrice big addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_BIG" operations" >> perfs.txt;
-		echo "addition matrice big addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_BIG" operations";
-		{ time ./target/debug/test_matrix_big a $ADD_LOOP d < test_mat.txt ; } 2>> perfs.txt;
-		echo "done";
+	#	echo "" >> perfs.txt;
+	#	echo "addition matrice big addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_BIG" operations" >> perfs.txt;
+	#	echo "addition matrice big addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_BIG" operations";
+	#	{ time ./target/debug/test_matrix_big a $ADD_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
 	#multiplication matrice small multiplication $MULT_LOOP iterations with floats and openmp
 		echo "" >> perfs.txt;
 		echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with floats and openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations" >> perfs.txt;
@@ -65,23 +65,23 @@ fi
 		{ time ./target/debug/test_matrix_small m $MULT_LOOP f < test_mat.txt ; } 2>> perfs.txt;
 		echo "done";
 	#multiplication matrice small multiplication $MULT_LOOP iterations with doubles and openmp
-		echo "" >> perfs.txt;
-		echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations" >> perfs.txt;
-		echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations";
-		{ time ./target/debug/test_matrix_small m $MULT_LOOP d < test_mat.txt ; } 2>> perfs.txt;
-		echo "done";
-	#multiplication matrice big multiplication $MULT_LOOP iterations with doubles and openmp
+	#	echo "" >> perfs.txt;
+	#	echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations" >> perfs.txt;
+	#	echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations";
+	#	{ time ./target/debug/test_matrix_small m $MULT_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
+	#multiplication matrice big multiplication $MULT_LOOP iterations with float and openmp
 		echo "" >> perfs.txt;
 		echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with floats and openmp : "$NUMBER_OF_OPS_MULT_BIG" operations" >> perfs.txt;
 		echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with floats and openmp : "$NUMBER_OF_OPS_MULT_BIG" operations";
 		{ time ./target/debug/test_matrix_big m $MULT_LOOP f < test_mat.txt ; } 2>> perfs.txt;
 		echo "done";
 	#multiplication matrice big multiplication $MULT_LOOP iterations with doubles and openmp
-		echo "" >> perfs.txt;
-		echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_BIG" operations" >> perfs.txt;
-		echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_BIG" operations";
-		{ time ./target/debug/test_matrix_big m $MULT_LOOP d < test_mat.txt ; } 2>> perfs.txt;
-		echo "done";
+	#	echo "" >> perfs.txt;
+	#	echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_BIG" operations" >> perfs.txt;
+	#	echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_BIG" operations";
+	#	{ time ./target/debug/test_matrix_big m $MULT_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
 	echo "#########        END OF TEST      #########" >> perfs.txt;
 	echo "" >> perfs.txt;
 	echo "" >> perfs.txt;
@@ -119,11 +119,11 @@ fi
 		{ time ./target/debug/test_matrix_small a $ADD_LOOP f < test_mat.txt ; } 2>> perfs.txt;
 		echo "done";
 	#addition matrice small addition $ADD_LOOP iterations with doubles and openmp
-		echo "" >> perfs.txt;
-		echo "addition matrice small addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_SMALL" operations" >> perfs.txt;
-		echo "addition matrice small addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_SMALL" operations";
-		{ time ./target/debug/test_matrix_small a $ADD_LOOP d < test_mat.txt ; } 2>> perfs.txt;
-		echo "done";
+	#	echo "" >> perfs.txt;
+	#	echo "addition matrice small addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_SMALL" operations" >> perfs.txt;
+	#	echo "addition matrice small addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_SMALL" operations";
+	#	{ time ./target/debug/test_matrix_small a $ADD_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
 	#addition matrice big addition $ADD_LOOP iterations with floats and openmp
 		echo "" >> perfs.txt;
 		echo "addition matrice big addition "$ADD_LOOP" iterations with floats and openmp : "$NUMBER_OF_OPS_ADD_BIG" operations" >> perfs.txt;
@@ -131,11 +131,11 @@ fi
 		{ time ./target/debug/test_matrix_big a $ADD_LOOP f < test_mat.txt ; } 2>> perfs.txt;
 		echo "done";
 	#addition matrice big addition $ADD_LOOP iterations with doubles and openmp
-		echo "" >> perfs.txt;
-		echo "addition matrice big addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_BIG" operations" >> perfs.txt;
-		echo "addition matrice big addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_BIG" operations";
-		{ time ./target/debug/test_matrix_big a $ADD_LOOP d < test_mat.txt ; } 2>> perfs.txt;
-		echo "done";
+	#	echo "" >> perfs.txt;
+	#	echo "addition matrice big addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_BIG" operations" >> perfs.txt;
+	#	echo "addition matrice big addition "$ADD_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_ADD_BIG" operations";
+	#	{ time ./target/debug/test_matrix_big a $ADD_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
 	#multiplication matrice small multiplication $MULT_LOOP iterations with floats and openmp
 		echo "" >> perfs.txt;
 		echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with floats and openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations" >> perfs.txt;
@@ -143,23 +143,23 @@ fi
 		{ time ./target/debug/test_matrix_small m $MULT_LOOP f < test_mat.txt ; } 2>> perfs.txt;
 		echo "done";
 	#multiplication matrice small multiplication $MULT_LOOP iterations with doubles and openmp
-		echo "" >> perfs.txt;
-		echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations" >> perfs.txt;
-		echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations";
-		{ time ./target/debug/test_matrix_small m $MULT_LOOP d < test_mat.txt ; } 2>> perfs.txt;
-		echo "done";
-	#multiplication matrice big multiplication $MULT_LOOP iterations with doubles and openmp
+	#	echo "" >> perfs.txt;
+	#	echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations" >> perfs.txt;
+	#	echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations";
+	#	{ time ./target/debug/test_matrix_small m $MULT_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
+	#multiplication matrice big multiplication $MULT_LOOP iterations with float and openmp
 		echo "" >> perfs.txt;
 		echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with floats and openmp : "$NUMBER_OF_OPS_MULT_BIG" operations" >> perfs.txt;
 		echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with floats and openmp : "$NUMBER_OF_OPS_MULT_BIG" operations";
 		{ time ./target/debug/test_matrix_big m $MULT_LOOP f < test_mat.txt ; } 2>> perfs.txt;
 		echo "done";
 	#multiplication matrice big multiplication $MULT_LOOP iterations with doubles and openmp
-		echo "" >> perfs.txt;
-		echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_BIG" operations" >> perfs.txt;
-		echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_BIG" operations";
-		{ time ./target/debug/test_matrix_big m $MULT_LOOP d < test_mat.txt ; } 2>> perfs.txt;
-		echo "done";
+	#	echo "" >> perfs.txt;
+	#	echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_BIG" operations" >> perfs.txt;
+	#	echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with doubles and openmp : "$NUMBER_OF_OPS_MULT_BIG" operations";
+	#	{ time ./target/debug/test_matrix_big m $MULT_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
 	echo "#########        END OF TEST      #########" >> perfs.txt;
 	echo "" >> perfs.txt;
 #Separating tests
@@ -196,11 +196,11 @@ fi
 		{ time ./target/debug/test_matrix_small a $ADD_LOOP f < test_mat.txt ; } 2>> perfs.txt;
 		echo "done";
 	#addition matrice small addition $ADD_LOOP iterations with doubles and NO openmp
-		echo "" >> perfs.txt;
-		echo "addition matrice small addition "$ADD_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_ADD_SMALL" operations" >> perfs.txt;
-		echo "addition matrice small addition "$ADD_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_ADD_SMALL" operations";
-		{ time ./target/debug/test_matrix_small a $ADD_LOOP d < test_mat.txt ; } 2>> perfs.txt;
-		echo "done";
+	#	echo "" >> perfs.txt;
+	#	echo "addition matrice small addition "$ADD_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_ADD_SMALL" operations" >> perfs.txt;
+	#	echo "addition matrice small addition "$ADD_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_ADD_SMALL" operations";
+	#	{ time ./target/debug/test_matrix_small a $ADD_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
 	#addition matrice big addition $ADD_LOOP iterations with floats and NO openmp
 		echo "" >> perfs.txt;
 		echo "addition matrice big addition "$ADD_LOOP" iterations with floats and NO openmp : "$NUMBER_OF_OPS_ADD_BIG" operations" >> perfs.txt;
@@ -208,11 +208,11 @@ fi
 		{ time ./target/debug/test_matrix_big a $ADD_LOOP f < test_mat.txt ; } 2>> perfs.txt;
 		echo "done";
 	#addition matrice big addition $ADD_LOOP iterations with doubles and NO openmp
-		echo "" >> perfs.txt;
-		echo "addition matrice big addition "$ADD_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_ADD_BIG" operations" >> perfs.txt;
-		echo "addition matrice big addition "$ADD_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_ADD_BIG" operations";
-		{ time ./target/debug/test_matrix_big a $ADD_LOOP d < test_mat.txt ; } 2>> perfs.txt;
-		echo "done";
+	#	echo "" >> perfs.txt;
+	#	echo "addition matrice big addition "$ADD_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_ADD_BIG" operations" >> perfs.txt;
+	#	echo "addition matrice big addition "$ADD_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_ADD_BIG" operations";
+	#	{ time ./target/debug/test_matrix_big a $ADD_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
 	#multiplication matrice small multiplication $MULT_LOOP iterations with floats and NO openmp
 		echo "" >> perfs.txt;
 		echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with floats and NO openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations" >> perfs.txt;
@@ -220,23 +220,23 @@ fi
 		{ time ./target/debug/test_matrix_small m $MULT_LOOP f < test_mat.txt ; } 2>> perfs.txt;
 		echo "done";
 	#multiplication matrice small multiplication $MULT_LOOP iterations with doubles and NO openmp
-		echo "" >> perfs.txt;
-		echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations" >> perfs.txt;
-		echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations";
-		{ time ./target/debug/test_matrix_small m $MULT_LOOP d < test_mat.txt ; } 2>> perfs.txt;
-		echo "done";
-	#multiplication matrice big multiplication $MULT_LOOP iterations with doubles and NO openmp
+	#	echo "" >> perfs.txt;
+	#	echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations" >> perfs.txt;
+	#	echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations";
+	#	{ time ./target/debug/test_matrix_small m $MULT_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
+	#multiplication matrice big multiplication $MULT_LOOP iterations with float and NO openmp
 		echo "" >> perfs.txt;
 		echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with floats and NO openmp : "$NUMBER_OF_OPS_MULT_BIG" operations" >> perfs.txt;
 		echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with floats and NO openmp : "$NUMBER_OF_OPS_MULT_BIG" operations";
 		{ time ./target/debug/test_matrix_big m $MULT_LOOP f < test_mat.txt ; } 2>> perfs.txt;
 		echo "done";
 	#multiplication matrice big multiplication $MULT_LOOP iterations with doubles and NO openmp
-		echo "" >> perfs.txt;
-		echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_MULT_BIG" operations" >> perfs.txt;
-		echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_MULT_BIG" operations";
-		{ time ./target/debug/test_matrix_big m $MULT_LOOP d < test_mat.txt ; } 2>> perfs.txt;
-		echo "done";
+	#	echo "" >> perfs.txt;
+	#	echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_MULT_BIG" operations" >> perfs.txt;
+	#	echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_MULT_BIG" operations";
+	#	{ time ./target/debug/test_matrix_big m $MULT_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
 	echo "#########        END OF TEST      #########" >> perfs.txt;
 #restore makefile
 mv Makefile MakefileNOpenmpO3

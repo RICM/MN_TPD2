@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void init_db(int nb, FILE *file)
 {
@@ -12,6 +13,8 @@ int main(int argc, char* argv[])
 {
 	FILE *file = NULL;
 	int nb;
+	
+	srand(time(NULL));
 
 	if(argc == 3){
 		sscanf(argv[1], "%d", &nb);

@@ -110,6 +110,71 @@ void gaxpyD (MatriceD a, VectD x, VectD y){
 	#endif
 }
 
+void factLUD (MatriceD a, MatriceD L, MatriceD U){
+	#ifdef _OPENMP
+		int i,j,k;
+		float sum;
+	#pragma omp parallel for private(i,j,k)
+		for(i=0; i<N; i++)
+			for(j=0; j<N; j++){
+				if(i == j)
+					L[i][j] = 1.;
+				else
+					L[i][j] = 0.;
+				U[i][j] = 0.;
+			}
+
+		for(i=0; i<N-1; i++){
+			for(j=i; j<N; j++){
+				sum = 0.;
+				for(k=0; k<i; k++)
+					sum += L[i][k]*U[k][j];
+				U[i][j] = a[i][j] - sum;
+			}
+			for(j=i+1; j<N; j++){
+				sum = 0.;
+				for(k=0; k<i; k++)
+					sum += L[j][k]*U[k][i];
+				L[j][i] = (1./U[i][i]) * (a[j][i] - sum);
+			}
+		}
+
+		sum = 0.;
+		for(k=0; k<N-1; k++)
+			sum += L[N-1][k]*U[k][N-1];
+		U[N-1][N-1] = a[N-1][N-1] - sum;
+	#else
+		for(int i=0; i<N; i++)
+			for(int j=0; j<N; j++){
+				if(i == j)
+					L[i][j] = 1.;
+				else
+					L[i][j] = 0.;
+				U[i][j] = 0.;
+			}
+
+		for(int i=0; i<N-1; i++){
+			for(int j=i; j<N; j++){
+				sum = 0.;
+				for(int k=0; k<i; k++)
+					sum += L[i][k]*U[k][j];
+				U[i][j] = a[i][j] - sum;
+			}
+			for(int j=i+1; j<N; j++){
+				sum = 0.;
+				for(int k=0; k<i; k++)
+					sum += L[j][k]*U[k][i];
+				L[j][i] = (1./U[i][i]) * (a[j][i] - sum);
+			}
+		}
+
+		sum = 0.;
+		for(int k=0; k<N-1; k++)
+			sum += L[N-1][k]*U[k][N-1];
+		U[N-1][N-1] = a[N-1][N-1] - sum;
+	#endif
+}
+
 /********************************************************/
 /*						   Float						*/
 /********************************************************/
@@ -201,6 +266,71 @@ void gaxpyF (MatriceF a, VectF x, VectF y){
 		for(int i=0; i<N; i++)
 			for(int j=0; j<N; j++)
 				y[i] += a[i][j]*x[j];
+	#endif
+}
+
+void factLUF (MatriceF a, MatriceF L, MatriceF U){
+	#ifdef _OPENMP
+		int i,j,k;
+		float sum;
+	#pragma omp parallel for private(i,j,k)
+		for(i=0; i<N; i++)
+			for(j=0; j<N; j++){
+				if(i == j)
+					L[i][j] = 1.;
+				else
+					L[i][j] = 0.;
+				U[i][j] = 0.;
+			}
+
+		for(i=0; i<N-1; i++){
+			for(j=i; j<N; j++){
+				sum = 0.;
+				for(k=0; k<i; k++)
+					sum += L[i][k]*U[k][j];
+				U[i][j] = a[i][j] - sum;
+			}
+			for(j=i+1; j<N; j++){
+				sum = 0.;
+				for(k=0; k<i; k++)
+					sum += L[j][k]*U[k][i];
+				L[j][i] = (1./U[i][i]) * (a[j][i] - sum);
+			}
+		}
+
+		sum = 0.;
+		for(k=0; k<N-1; k++)
+			sum += L[N-1][k]*U[k][N-1];
+		U[N-1][N-1] = a[N-1][N-1] - sum;
+	#else
+		for(int i=0; i<N; i++)
+			for(int j=0; j<N; j++){
+				if(i == j)
+					L[i][j] = 1.;
+				else
+					L[i][j] = 0.;
+				U[i][j] = 0.;
+			}
+
+		for(int i=0; i<N-1; i++){
+			for(int j=i; j<N; j++){
+				sum = 0.;
+				for(int k=0; k<i; k++)
+					sum += L[i][k]*U[k][j];
+				U[i][j] = a[i][j] - sum;
+			}
+			for(int j=i+1; j<N; j++){
+				sum = 0.;
+				for(int k=0; k<i; k++)
+					sum += L[j][k]*U[k][i];
+				L[j][i] = (1./U[i][i]) * (a[j][i] - sum);
+			}
+		}
+
+		sum = 0.;
+		for(int k=0; k<N-1; k++)
+			sum += L[N-1][k]*U[k][N-1];
+		U[N-1][N-1] = a[N-1][N-1] - sum;
 	#endif
 }
 
