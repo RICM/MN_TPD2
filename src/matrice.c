@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <nmmintrin.h>
 #include "matrice.h"
 
 /****************************************************************/
@@ -42,6 +43,16 @@ void addD (MatriceD a, MatriceD b, MatriceD res){
 		for(i = 0; i<N; i++)
 			for(j = 0; j<N; j++)
 				res[i][j] = a[i][j] + b[i][j];
+	#elif _VECTOR
+		__m128d aTmp, bTmp, resTmp;
+		for (int i = 0; i<N; i++) {
+			for (int j = 0; j<N; j+=2) {
+				aTmp = _mm_load_pd(a[i]+j);
+				bTmp = _mm_load_pd(b[i]+j);
+				resTmp = _mm_add_pd(aTmp,bTmp);
+				_mm_store_pd(res[i]+j,resTmp);
+			}
+		}
 	#else
 		for(int i = 0; i<N; i++)
 			for(int j = 0; j<N; j++)
@@ -62,7 +73,27 @@ void mulD (MatriceD a, MatriceD b, MatriceD res){
 				sum = 0.0;
 				// calcule de sum
 				for(k = 0; k<N; k++)
-					sum += a[j][k] * b[k][i];
+					sum += a[i][k] * b[k][j];
+				res[i][j] = sum;
+			}
+		}
+	#elif _VECTOR
+		__m128d aTmp, bTmp, resTmp, tmp;
+		for(int i = 0; i<N; i++){
+			for(int j = 0; j<N; j++){
+				sum = 0.0;
+				// calcule de sum
+				for(int k = 0; k<N; k+=2){
+
+					aTmp = _mm_load_pd(a[i]+k);
+
+					bTmp[0] = b[k][j];
+					bTmp[1] = b[k+1][j];
+
+					resTmp = _mm_mul_pd(aTmp, bTmp);
+					tmp = _mm_hadd_pd(resTmp, resTmp);
+					sum += tmp[0];
+				}
 				res[i][j] = sum;
 			}
 		}
@@ -72,7 +103,7 @@ void mulD (MatriceD a, MatriceD b, MatriceD res){
 				sum = 0.0;
 				// calcule de sum
 				for(int k = 0; k<N; k++)
-					sum += a[j][k] * b[k][i];
+					sum += a[i][k] * b[k][j];
 				res[i][j] = sum;
 			}
 		}
@@ -111,9 +142,9 @@ void gaxpyD (MatriceD a, VectD x, VectD y){
 }
 
 void factLUD (MatriceD a, MatriceD L, MatriceD U){
+	float sum;
 	#ifdef _OPENMP
 		int i,j,k;
-		float sum;
 	#pragma omp parallel for private(i,j,k)
 		for(i=0; i<N; i++)
 			for(j=0; j<N; j++){
@@ -204,6 +235,16 @@ void addF (MatriceF a, MatriceF b, MatriceF res){
 		for(i = 0; i<N; i++)
 			for(j = 0; j<N; j++)
 				res[i][j] = a[i][j] + b[i][j];
+	#elif _VECTOR
+		__m128 aTmp, bTmp, resTmp;
+		for (int i = 0; i<N; i++) {
+			for (int j = 0; j<N; j+=4) {
+				aTmp = _mm_load_ps(a[i]+j);
+				bTmp = _mm_load_ps(b[i]+j);
+				resTmp = _mm_add_ps(aTmp,bTmp);
+				_mm_store_ps(res[i]+j,resTmp);
+			}
+		}
 	#else
 		for(int i = 0; i<N; i++)
 			for(int j = 0; j<N; j++)
@@ -222,7 +263,29 @@ void mulF (MatriceF a, MatriceF b, MatriceF res){
 				sum = 0.0;
 				// calcule de sum
 				for(k = 0; k<N; k++)
-					sum += a[j][k] * b[k][i];
+					sum += a[i][k] * b[k][j];
+				res[i][j] = sum;
+			}
+		}
+	#elif _VECTOR
+		__m128 aTmp, bTmp, resTmp, tmp;
+		for(int i = 0; i<N; i++){
+			for(int j = 0; j<N; j++){
+				sum = 0.0;
+				// calcule de sum
+				for(int k = 0; k<N; k+=4){
+
+					aTmp = _mm_load_ps(a[i]+k);
+
+					bTmp[0] = b[k][j];
+					bTmp[1] = b[k+1][j];
+					bTmp[2] = b[k+2][j];
+					bTmp[3] = b[k+3][j];
+
+					resTmp = _mm_mul_ps(aTmp, bTmp);
+					tmp = _mm_hadd_ps(resTmp, resTmp);
+					sum += tmp[0]+tmp[1];
+				}
 				res[i][j] = sum;
 			}
 		}
@@ -232,7 +295,7 @@ void mulF (MatriceF a, MatriceF b, MatriceF res){
 				sum = 0.0;
 				// calcule de sum
 				for(int k = 0; k<N; k++)
-					sum += a[j][k] * b[k][i];
+					sum += a[i][k] * b[k][j];
 				res[i][j] = sum;
 			}
 		}
@@ -270,9 +333,9 @@ void gaxpyF (MatriceF a, VectF x, VectF y){
 }
 
 void factLUF (MatriceF a, MatriceF L, MatriceF U){
+	float sum;
 	#ifdef _OPENMP
 		int i,j,k;
-		float sum;
 	#pragma omp parallel for private(i,j,k)
 		for(i=0; i<N; i++)
 			for(j=0; j<N; j++){
@@ -282,7 +345,7 @@ void factLUF (MatriceF a, MatriceF L, MatriceF U){
 					L[i][j] = 0.;
 				U[i][j] = 0.;
 			}
-
+		
 		for(i=0; i<N-1; i++){
 			for(j=i; j<N; j++){
 				sum = 0.;

@@ -1,8 +1,8 @@
-typedef double MatriceD[N][N];
-typedef float MatriceF[N][N];
+typedef double MatriceD[N][N] __attribute__((aligned (16)));
+typedef float MatriceF[N][N] __attribute__((aligned (16)));
 
-typedef double VectD[N];
-typedef float VectF[N];
+typedef double VectD[N] __attribute__((aligned (16)));
+typedef float VectF[N] __attribute__((aligned (16)));
 
 /* Operations */
 
