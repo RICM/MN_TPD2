@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -g -Wall -pedantic -std=c99 -msse4.2 -Iinclude/
 LFLAGS = -L$(DIR_LIB)
 EXEC = test_matrix_small test_matrix_big test_vect test_vect_lib gen_aleat libvect.a
-DEBUG = 1
+DEBUG = 0
 _OPENMP = 0
 
 DIR_INCLUDE = include/
@@ -16,7 +16,7 @@ DIR_OBJ = target/obj/
 
 # MAT_SMALL = limit size of the cache = sqrt(99 225) = 315 -- for vectorisation it has to be divisible by 4 --> 312
 # MAT_BIG = sqrt(302 500) = 550 --> 548
-MAT_SMALL = 4
+MAT_SMALL = 312
 MAT_BIG = 548
 
 #-------------------------------------------------
@@ -36,12 +36,12 @@ test_matrix_big: $(DIR_OBJ)matrice_big.o $(DIR_OBJ)main_big.o
 
 test_vect: $(DIR_OBJ)test_vect.o $(DIR_OBJ)vecteur.o
 	@echo ------------- Generating $@ -------------
-	$(CC) -fopenmp -o $(DIR_EXE)$@ $^
+	$(CC) -D_VECTOR -o $(DIR_EXE)$@ $^
 	@echo -e
 
 test_vect_lib: $(DIR_OBJ)test_vect.o libvect.a
 	@echo ------------- Generating $@ -------------
-	$(CC) -fopenmp -o $(DIR_EXE)$@ $< $(DIR_LIB)libvect.a
+	$(CC) -D_VECTOR -o $(DIR_EXE)$@ $< $(DIR_LIB)libvect.a
 	@echo -e
 
 gen_aleat: $(DIR_OBJ)gen_aleat.o
@@ -60,12 +60,12 @@ libvect.a: $(DIR_OBJ)vecteur.o
 
 $(DIR_OBJ)test_vect.o: $(DIR_SRC)test_vect.c $(DIR_INCLUDE)vecteur.h
 	@echo ------------- Generating $@ -------------
-	$(CC) -o $@ -fopenmp -DDEBUG=$(DEBUG) -c $< $(CFLAGS)
+	$(CC) -o $@ -D_VECTOR -DDEBUG=$(DEBUG) -c $< $(CFLAGS)
 	@echo -e
 
 $(DIR_OBJ)vecteur.o: $(DIR_SRC)vecteur.c $(DIR_INCLUDE)vecteur.h
 	@echo ------------- Generating $@ -------------
-	$(CC) -o $@ -fopenmp -DDEBUG=$(DEBUG) -c $< $(CFLAGS)
+	$(CC) -o $@ -D_VECTOR -DDEBUG=$(DEBUG) -c $< $(CFLAGS)
 	@echo -e
 
 #--------------
@@ -102,8 +102,6 @@ $(DIR_OBJ)%.o: $(DIR_SRC)%.c
 	@echo ------------- Generating $@ -------------
 	$(CC) -o $@ -c $< $(CFLAGS)
 	@echo -e
-
-$(DIR_OBJ)test_vect.o : $(DIR_SRC)test_vect.c $(DIR_INCLUDE)vecteur.h
 
 #-------------------------------------------------
 #                     CLEANING

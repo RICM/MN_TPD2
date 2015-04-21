@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <nmmintrin.h>
 
 #include "vecteur.h"
 
@@ -20,6 +21,13 @@ void add (VectSM v1, VectSM v2, VectSM v3)
 			#pragma omp parallel for private (i)
 				for(j=i; j<i+BLOCAGE; j++)
 					v3[j] = v1[j]+v2[j];
+		}
+	#elif _VECTOR
+		__m128d a, b;
+		for(int i=0; i<SMALL; i+=2){
+			a = _mm_load_pd(v1+i);
+			b = _mm_load_pd(v2+i);
+			_mm_store_pd(v3+i,_mm_add_pd(a, b));
 		}
 	#else
 		for(int i=0; i<SMALL; i++)
@@ -53,6 +61,17 @@ void scal (VectSM v1, VectSM v2, double *s)
 					res += v1[i]*v2[i];
 		}
 		*s = res;
+	#elif _VECTOR
+		__m128d a, b, res;
+		*s = 0;
+		for(int i=0; i<SMALL; i+=2){
+			a = _mm_load_pd(v1+i);
+			b = _mm_load_pd(v2+i);
+
+			res = _mm_dp_pd(a, b, 0xFF);
+
+			*s += res[0];
+		}	
 	#else
 		*s = 0;
 			for(int i=0; i<SMALL; i++)
@@ -70,6 +89,13 @@ void addBG (VectBG v1, VectBG v2, VectBG v3)
 			#pragma omp parallel for private (i)
 				for(j=i; j<i+BLOCAGE; j++)
 					v3[j] = v1[j]+v2[j];
+		}
+	#elif _VECTOR
+		__m128d a, b;
+		for(int i=0; i<BIG; i+=2){
+			a = _mm_load_pd(v1+i);
+			b = _mm_load_pd(v2+i);
+			_mm_store_pd(v3+i,_mm_add_pd(a, b));
 		}
 	#else
 		for(int i=0; i<BIG; i++)
@@ -103,6 +129,17 @@ void scalBG (VectBG v1, VectBG v2, double *s)
 					res += v1[i]*v2[i];
 		}
 		*s = res;
+	#elif _VECTOR
+		__m128d a, b, res;
+		*s = 0;
+		for(int i=0; i<BIG; i+=2){
+			a = _mm_load_pd(v1+i);
+			b = _mm_load_pd(v2+i);
+
+			res = _mm_dp_pd(a, b, 0xFF);
+
+			*s += res[0];
+		}
 	#else
 		*s = 0;
 			for(int i=0; i<BIG; i++)
@@ -122,6 +159,13 @@ void addF (VectFSM v1, VectFSM v2, VectFSM v3)
 			#pragma omp parallel for private (i)
 				for(j=i; j<i+BLOCAGE; j++)
 					v3[j] = v1[j]+v2[j];
+		}
+	#elif _VECTOR
+		__m128 a, b;
+		for(int i=0; i<SMALL; i+=4){
+			a = _mm_load_ps(v1+i);
+			b = _mm_load_ps(v2+i);
+			_mm_store_ps(v3+i,_mm_add_ps(a, b));
 		}
 	#else
 		for(int i=0; i<SMALL; i++)
@@ -155,6 +199,17 @@ void scalF (VectFSM v1, VectFSM v2, double *s)
 					res += v1[i]*v2[i];
 		}
 		*s = res;
+	#elif _VECTOR
+		*s = 0;
+		__m128 a, b, res;
+		for(int i=0; i<SMALL; i+=4){
+			a = _mm_load_ps(v1+i);
+			b = _mm_load_ps(v2+i);
+
+			res = _mm_dp_ps(a, b, 0xFF);
+
+			*s += res[0];
+		}
 	#else
 		*s = 0;
 			for(int i=0; i<SMALL; i++)
@@ -172,6 +227,13 @@ void addFBG (VectFBG v1, VectFBG v2, VectFBG v3)
 			#pragma omp parallel for private (i)
 				for(j=i; j<i+BLOCAGE; j++)
 					v3[j] = v1[j]+v2[j];
+		}
+	#elif _VECTOR
+		__m128 a, b;
+		for(int i=0; i<BIG; i+=4){
+			a = _mm_load_ps(v1+i);
+			b = _mm_load_ps(v2+i);
+			_mm_store_ps(v3+i,_mm_add_ps(a, b));
 		}
 	#else
 		for(int i=0; i<BIG; i++)
@@ -205,6 +267,17 @@ void scalFBG (VectFBG v1, VectFBG v2, double *s)
 					res += v1[i]*v2[i];
 		}
 		*s = res;
+	#elif _VECTOR
+		__m128 a, b, res;
+		*s = 0;
+		for(int i=0; i<BIG; i+=4){
+			a = _mm_load_ps(v1+i);
+			b = _mm_load_ps(v2+i);
+
+			res = _mm_dp_ps(a, b, 0xFF);
+
+			*s += res[0];
+		}
 	#else
 		*s = 0;
 			for(int i=0; i<BIG; i++)

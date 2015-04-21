@@ -103,8 +103,6 @@ $(DIR_OBJ)%.o: $(DIR_SRC)%.c
 	$(CC) -o $@ -c $< $(CFLAGS)
 	@echo -e
 
-$(DIR_OBJ)test_vect.o : $(DIR_SRC)test_vect.c $(DIR_INCLUDE)vecteur.h
-
 #-------------------------------------------------
 #                     CLEANING
 #-------------------------------------------------
