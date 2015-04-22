@@ -1,6 +1,6 @@
 #definition des variables locales au scripts
-ADD_LOOP=100000;
-MULT_LOOP=500;
+ADD_LOOP=100;
+MULT_LOOP=50;
 SIZE_OF_SMALL=315;
 SIZE_OF_BIG=550;
 NUMBER_OF_OPS_ADD_SMALL=$(($SIZE_OF_SMALL * $SIZE_OF_SMALL * $ADD_LOOP));
@@ -17,20 +17,20 @@ echo "Tests with O0 and openmp";
 echo "######################################################################################################";
 #clean
 make clean > /dev/null 2>&1;
-if [ $? == O ] 
-then 
+if [ $? == O ]
+then
 	echo "Failed to clean";
 	exit 1;
-else 
+else
 	echo "Cleant successfully";
 fi
 #compile
 make  > /dev/null 2>&1;
-if [ $? == O ] 
-then 
+if [ $? == O ]
+then
 	echo "Failed to make";
 	exit 1;
-else 
+else
 	echo "Made application successfully for O0 and openmp";
 fi
 #execute
@@ -95,20 +95,20 @@ mv MakefileOpenmpO3 Makefile
 echo "switched makefiles";
 #clean
 make clean > /dev/null 2>&1;
-if [ $? == O ] 
-then 
+if [ $? == O ]
+then
 	echo "Failed to clean";
 	exit 1;
-else 
+else
 	echo "Cleant successfully";
 fi
 #compile
 make  > /dev/null 2>&1;
-if [ $? == O ] 
-then 
+if [ $? == O ]
+then
 	echo "Failed to make";
 	exit 1;
-else 
+else
 	echo "Made application successfully for O3 and openmp";
 fi
 #execute
@@ -172,20 +172,20 @@ mv MakefileNOpenmpO3 Makefile
 echo "switched makefiles";
 #clean
 make clean > /dev/null 2>&1;
-if [ $? == O ] 
-then 
+if [ $? == O ]
+then
 	echo "Failed to clean";
 	exit 1;
-else 
+else
 	echo "Cleant successfully";
 fi
 #compile
 make  > /dev/null 2>&1;
-if [ $? == O ] 
-then 
+if [ $? == O ]
+then
 	echo "Failed to make";
 	exit 1;
-else 
+else
 	echo "Made application successfully for O3 and NO openmp";
 fi
 #execute
@@ -238,8 +238,85 @@ fi
 	#	{ time ./target/debug/test_matrix_big m $MULT_LOOP d < test_mat.txt ; } 2>> perfs.txt;
 	#	echo "done";
 	echo "#########        END OF TEST      #########" >> perfs.txt;
+	echo "" >> perfs.txt;
+#Separating tests
+echo "######################################################################################################";
+echo "Tests with O3 and openmp and SSE";
+echo "######################################################################################################";
+#switching make file
+mv Makefile MakefileNOpenmpO3;
+mv MakefileOpenmpO3SSE Makefile;
+echo "switched makefiles";
+#clean
+make clean > /dev/null 2>&1;
+if [ $? == O ]
+then
+	echo "Failed to clean";
+	exit 1;
+else
+	echo "Cleant successfully";
+fi
+#compile
+make  > /dev/null 2>&1;
+if [ $? == O ]
+then
+	echo "Failed to make";
+	exit 1;
+else
+	echo "Made application successfully for O3 and openmp and SSE";
+fi
+#execute
+	echo "######## test with openmp and O3 and SSE #######" >> perfs.txt;
+	#addition matrice small addition $ADD_LOOP iterations with floats and openmp and SSE
+		echo "addition matrice small addition "$ADD_LOOP" iterations with floats and openmp and SSE : "$NUMBER_OF_OPS_ADD_SMALL" operations" >> perfs.txt;
+		echo "addition matrice small addition "$ADD_LOOP" iterations with floats and openmp and SSE : "$NUMBER_OF_OPS_ADD_SMALL" operations";
+		{ time ./target/debug/test_matrix_small a $ADD_LOOP f < test_mat.txt ; } 2>> perfs.txt;
+		echo "done";
+	#addition matrice small addition $ADD_LOOP iterations with doubles and NO openmp
+	#	echo "" >> perfs.txt;
+	#	echo "addition matrice small addition "$ADD_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_ADD_SMALL" operations" >> perfs.txt;
+	#	echo "addition matrice small addition "$ADD_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_ADD_SMALL" operations";
+	#	{ time ./target/debug/test_matrix_small a $ADD_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
+	#addition matrice big addition $ADD_LOOP iterations with floats and NO openmp
+		echo "" >> perfs.txt;
+		echo "addition matrice big addition "$ADD_LOOP" iterations with floats and openmp and SSE : "$NUMBER_OF_OPS_ADD_BIG" operations" >> perfs.txt;
+		echo "addition matrice big addition "$ADD_LOOP" iterations with floats and and openmp and SSE : "$NUMBER_OF_OPS_ADD_BIG" operations";
+		{ time ./target/debug/test_matrix_big a $ADD_LOOP f < test_mat.txt ; } 2>> perfs.txt;
+		echo "done";
+	#addition matrice big addition $ADD_LOOP iterations with doubles and NO openmp
+	#	echo "" >> perfs.txt;
+	#	echo "addition matrice big addition "$ADD_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_ADD_BIG" operations" >> perfs.txt;
+	#	echo "addition matrice big addition "$ADD_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_ADD_BIG" operations";
+	#	{ time ./target/debug/test_matrix_big a $ADD_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
+	#multiplication matrice small multiplication $MULT_LOOP iterations with floats and NO openmp
+		echo "" >> perfs.txt;
+		echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with floats and openmp and SSE : "$NUMBER_OF_OPS_MULT_SMALL" operations" >> perfs.txt;
+		echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with floats and openmp and SSE : "$NUMBER_OF_OPS_MULT_SMALL" operations";
+		{ time ./target/debug/test_matrix_small m $MULT_LOOP f < test_mat.txt ; } 2>> perfs.txt;
+		echo "done";
+	#multiplication matrice small multiplication $MULT_LOOP iterations with doubles and NO openmp
+	#	echo "" >> perfs.txt;
+	#	echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations" >> perfs.txt;
+	#	echo "multiplication matrice small multiplication "$MULT_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_MULT_SMALL" operations";
+	#	{ time ./target/debug/test_matrix_small m $MULT_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
+	#multiplication matrice big multiplication $MULT_LOOP iterations with float and NO openmp
+		echo "" >> perfs.txt;
+		echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with floats and openmp and SSE : "$NUMBER_OF_OPS_MULT_BIG" operations" >> perfs.txt;
+		echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with floats and openmp and SSE : "$NUMBER_OF_OPS_MULT_BIG" operations";
+		{ time ./target/debug/test_matrix_big m $MULT_LOOP f < test_mat.txt ; } 2>> perfs.txt;
+		echo "done";
+	#multiplication matrice big multiplication $MULT_LOOP iterations with doubles and NO openmp
+	#	echo "" >> perfs.txt;
+	#	echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_MULT_BIG" operations" >> perfs.txt;
+	#	echo "multiplication matrice big multiplication "$MULT_LOOP" iterations with doubles and NO openmp : "$NUMBER_OF_OPS_MULT_BIG" operations";
+	#	{ time ./target/debug/test_matrix_big m $MULT_LOOP d < test_mat.txt ; } 2>> perfs.txt;
+	#	echo "done";
+	echo "#########        END OF TEST      #########" >> perfs.txt;
 #restore makefile
-mv Makefile MakefileNOpenmpO3
+mv Makefile MakefileOpenmpO3SSE
 mv MakefileOpenmpO0 Makefile
 #libère les variables locales
 unset ADD_LOOP;

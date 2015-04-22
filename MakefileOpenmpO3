@@ -58,16 +58,6 @@ libvect.a: $(DIR_OBJ)vecteur.o
 #                   DEPENDENCIES
 #-------------------------------------------------
 
-$(DIR_OBJ)test_vect.o: $(DIR_SRC)test_vect.c $(DIR_INCLUDE)vecteur.h
-	@echo ------------- Generating $@ -------------
-	$(CC) -o $@ -fopenmp -DDEBUG=$(DEBUG) -c $< $(CFLAGS)
-	@echo -e
-
-$(DIR_OBJ)vecteur.o: $(DIR_SRC)vecteur.c $(DIR_INCLUDE)vecteur.h
-	@echo ------------- Generating $@ -------------
-	$(CC) -o $@ -fopenmp -DDEBUG=$(DEBUG) -c $< $(CFLAGS)
-	@echo -e
-
 #--------------
 #		SMALL
 #--------------
@@ -103,6 +93,8 @@ $(DIR_OBJ)%.o: $(DIR_SRC)%.c
 	@echo ------------- Generating $@ -------------
 	$(CC) -o $@ -c $< $(CFLAGS)
 	@echo -e
+
+$(DIR_OBJ)test_vect.o : $(DIR_SRC)test_vect.c $(DIR_INCLUDE)vecteur.h
 
 #-------------------------------------------------
 #                     CLEANING
