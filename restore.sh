@@ -11,7 +11,7 @@ echo -e '#-------------------------------------------------
 #                    VARIABLES
 #-------------------------------------------------
 CC = gcc
-CFLAGS = -g -Wall -pedantic -std=c99 -Iinclude/
+CFLAGS = -g -Wall -pedantic -std=c99 -msse4 -Iinclude/
 LFLAGS = -L$(DIR_LIB)
 EXEC = test_matrix_small test_matrix_big test_vect test_vect_lib gen_aleat libvect.a
 DEBUG = 0
@@ -23,10 +23,10 @@ DIR_LIB = libs/
 DIR_EXE = target/debug/
 DIR_OBJ = target/obj/
 
-# MAT_SMALL = limit size of the cache = sqrt(99 225) = 315
-# MAT_BIG = sqrt(302 500) = 550
-MAT_SMALL = 315
-MAT_BIG = 550
+# MAT_SMALL = limit size of the cache = sqrt(99 225) = 315 -- for vectorisation it has to be divisible by 4 --> 312
+# MAT_BIG = sqrt(302 500) = 550 --> 548
+MAT_SMALL = 312
+MAT_BIG = 548
 
 #-------------------------------------------------
 #                     LINKINGS
@@ -67,6 +67,16 @@ libvect.a: $(DIR_OBJ)vecteur.o
 #                   DEPENDENCIES
 #-------------------------------------------------
 
+$(DIR_OBJ)test_vect.o: $(DIR_SRC)test_vect.c $(DIR_INCLUDE)vecteur.h
+	@echo ------------- Generating $@ -------------
+	$(CC) -o $@ -fopenmp -DDEBUG=$(DEBUG) -c $< $(CFLAGS)
+	@echo -e
+
+$(DIR_OBJ)vecteur.o: $(DIR_SRC)vecteur.c $(DIR_INCLUDE)vecteur.h
+	@echo ------------- Generating $@ -------------
+	$(CC) -o $@ -fopenmp -DDEBUG=$(DEBUG) -c $< $(CFLAGS)
+	@echo -e
+	
 #--------------
 #		SMALL
 #--------------
@@ -102,8 +112,6 @@ $(DIR_OBJ)%.o: $(DIR_SRC)%.c
 	@echo ------------- Generating $@ -------------
 	$(CC) -o $@ -c $< $(CFLAGS)
 	@echo -e
-
-$(DIR_OBJ)test_vect.o : $(DIR_SRC)test_vect.c $(DIR_INCLUDE)vecteur.h
 
 #-------------------------------------------------
 #                     CLEANING
@@ -117,7 +125,7 @@ clean:
 #                    VARIABLES
 #-------------------------------------------------
 CC = gcc
-CFLAGS = -g -Wall -pedantic -O3 -std=c99 -Iinclude/
+CFLAGS = -g -Wall -pedantic -O3 -std=c99 -msse4 -Iinclude/
 LFLAGS = -L$(DIR_LIB)
 EXEC = test_matrix_small test_matrix_big test_vect test_vect_lib gen_aleat libvect.a
 DEBUG = 0
@@ -129,10 +137,10 @@ DIR_LIB = libs/
 DIR_EXE = target/debug/
 DIR_OBJ = target/obj/
 
-# MAT_SMALL = limit size of the cache = sqrt(99 225) = 315
-# MAT_BIG = sqrt(302 500) = 550
-MAT_SMALL = 315
-MAT_BIG = 550
+# MAT_SMALL = limit size of the cache = sqrt(99 225) = 315 -- for vectorisation it has to be divisible by 4 --> 312
+# MAT_BIG = sqrt(302 500) = 550 --> 548
+MAT_SMALL = 312
+MAT_BIG = 548
 
 #-------------------------------------------------
 #                     LINKINGS
@@ -173,6 +181,16 @@ libvect.a: $(DIR_OBJ)vecteur.o
 #                   DEPENDENCIES
 #-------------------------------------------------
 
+$(DIR_OBJ)test_vect.o: $(DIR_SRC)test_vect.c $(DIR_INCLUDE)vecteur.h
+	@echo ------------- Generating $@ -------------
+	$(CC) -o $@ -fopenmp -DDEBUG=$(DEBUG) -c $< $(CFLAGS)
+	@echo -e
+
+$(DIR_OBJ)vecteur.o: $(DIR_SRC)vecteur.c $(DIR_INCLUDE)vecteur.h
+	@echo ------------- Generating $@ -------------
+	$(CC) -o $@ -fopenmp -DDEBUG=$(DEBUG) -c $< $(CFLAGS)
+	@echo -e
+	
 #--------------
 #		SMALL
 #--------------
@@ -208,8 +226,6 @@ $(DIR_OBJ)%.o: $(DIR_SRC)%.c
 	@echo ------------- Generating $@ -------------
 	$(CC) -o $@ -c $< $(CFLAGS)
 	@echo -e
-
-$(DIR_OBJ)test_vect.o : $(DIR_SRC)test_vect.c $(DIR_INCLUDE)vecteur.h
 
 #-------------------------------------------------
 #                     CLEANING
@@ -224,7 +240,7 @@ clean:
 #                    VARIABLES
 #-------------------------------------------------
 CC = gcc
-CFLAGS = -g -Wall -pedantic -O3 -std=c99 -Iinclude/
+CFLAGS = -g -Wall -pedantic -O3 -std=c99 -msse4 -Iinclude/
 LFLAGS = -L$(DIR_LIB)
 EXEC = test_matrix_small test_matrix_big test_vect test_vect_lib gen_aleat libvect.a
 DEBUG = 0
@@ -236,10 +252,10 @@ DIR_LIB = libs/
 DIR_EXE = target/debug/
 DIR_OBJ = target/obj/
 
-# MAT_SMALL = limit size of the cache = sqrt(99 225) = 315
-# MAT_BIG = sqrt(302 500) = 550
-MAT_SMALL = 315
-MAT_BIG = 550
+# MAT_SMALL = limit size of the cache = sqrt(99 225) = 315 -- for vectorisation it has to be divisible by 4 --> 312
+# MAT_BIG = sqrt(302 500) = 550 --> 548
+MAT_SMALL = 312
+MAT_BIG = 548
 
 #-------------------------------------------------
 #                     LINKINGS
@@ -280,6 +296,16 @@ libvect.a: $(DIR_OBJ)vecteur.o
 #                   DEPENDENCIES
 #-------------------------------------------------
 
+$(DIR_OBJ)test_vect.o: $(DIR_SRC)test_vect.c $(DIR_INCLUDE)vecteur.h
+	@echo ------------- Generating $@ -------------
+	$(CC) -o $@ -DDEBUG=$(DEBUG) -c $< $(CFLAGS)
+	@echo -e
+
+$(DIR_OBJ)vecteur.o: $(DIR_SRC)vecteur.c $(DIR_INCLUDE)vecteur.h
+	@echo ------------- Generating $@ -------------
+	$(CC) -o $@ -DDEBUG=$(DEBUG) -c $< $(CFLAGS)
+	@echo -e
+	
 #--------------
 #		SMALL
 #--------------
@@ -315,8 +341,6 @@ $(DIR_OBJ)%.o: $(DIR_SRC)%.c
 	@echo ------------- Generating $@ -------------
 	$(CC) -o $@ -c $< $(CFLAGS)
 	@echo -e
-
-$(DIR_OBJ)test_vect.o : $(DIR_SRC)test_vect.c $(DIR_INCLUDE)vecteur.h
 
 #-------------------------------------------------
 #                     CLEANING
